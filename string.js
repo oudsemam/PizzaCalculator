@@ -1,5 +1,7 @@
+// command for prompt
 const prompt = require('prompt-sync')();
-var colors = require('colors');
+// for colors
+var colors = require('colors'); 
 
 
 // const firstName = prompt ("What is your first name? ");
@@ -82,9 +84,9 @@ do {
     total += extraCheese === "Y" ? 1 : 0;
 
     do{
-        extraToppings = prompt ("Do you want any other toppings? (Y/N) ".grey).toUpperCase();
+        extraToppings = prompt ("Do you want any other toppings? (Y/N) ".america).toUpperCase();
         if (extraToppings === "Y") {
-            toppings = prompt ("Please select: mushroom (M), onion (O), green pepper (G), pepperoni (P), sausage (S), or bacon (B)? ".grey).toUpperCase();
+            toppings = prompt ("Please select: mushroom (M), onion (O), green pepper (G), pepperoni (P), sausage (S), or bacon (B)? ".grey.bgWhite).toUpperCase();
             
             switch (toppings) {
             case  "M":
@@ -109,10 +111,10 @@ do {
         }; 
     }while (extraToppings === "Y");
     
-    another = prompt ("Would you like another pizza? (Y/N) ".grey).toUpperCase();
+    another = prompt ("Would you like another pizza? (Y/N) ".grey.bgWhite).toUpperCase();
 } while (another === "Y");
 
-console.log (`Your total cost is $${total}.00`.rainbow);
+console.log (`Your total cost is $${total}.00`.rainbow.bgWhite);
 
 
 // if/else statement
