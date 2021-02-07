@@ -65,15 +65,16 @@
 // multiple loop for the whole thing for multiple pies
 
 const prompt = require('prompt-sync')(); 
+var colors = require('colors'); 
 
 let total = 0;
 let pizza = null;
 // // let another = null;
 
-
+// size of pizza function and prompt
 function getCostOfSize (size) {
     total = size;
-    console.log (`Your running total so far is ${total}.00`);
+    console.log (`Your running total so far is ${total}.00`.green);
 };
 
 do {
@@ -92,19 +93,22 @@ do {
             getCostOfSize (8);
             break;
         default:
-            console.log("Invalid entry please try again. (HINT: only enter S, M, L or XL.) ")
+            console.log("Invalid entry please try again. (HINT: only enter S, M, L or XL.) ".red)
     };
     if (pizza === 'S' || pizza === 'M'|| pizza === 'XL' || pizza === 'XL'){
         pizza = 1;
         };
 } while (pizza !== 1);
 
+// extra cheese function and prompt
 function getCostOfCheese (cheese){
     total += cheese;
-    console.log (`Your current running total is ${total}.00`) 
+    console.log (`Your current running total is ${total}.00`.green) 
 };
 
-    let extraCheese = prompt ("Do you want extra cheese for $1 more? (Y/N) ").toUpperCase();
+let extraCheese = null;    
+do {
+    extraCheese = prompt ("Do you want extra cheese for $1 more? (Y/N) ").toUpperCase();
     switch (extraCheese) {
         case "Y":
             getCostOfCheese (1);
@@ -113,7 +117,13 @@ function getCostOfCheese (cheese){
             getCostOfCheese (0);
             break;
         default:
-            console.log ("Invalid entry please try again. (HINT: only enter Y or N. ");
+            console.log ("Invalid entry please try again. (HINT: only enter Y or N.)".red);
     };
+    if (extraCheese === 'Y' || extraCheese === 'N'){
+        extraCheese = 1;
+    }
+} while (extraCheese !== 1);
+
+
 
     
