@@ -64,80 +64,56 @@
 // 3. getCostOfToppigns - return cost of toppings
 // multiple loop for the whole thing for multiple pies
 
-const prompt = require('prompt-sync')();
+const prompt = require('prompt-sync')(); 
 
 let total = 0;
 let pizza = null;
-// let another = null;
+// // let another = null;
 
 
 function getCostOfSize (size) {
-    let total += pizzaPrice
+    total = size;
+    console.log (`Your running total so far is ${total}.00`);
 };
 
 do {
-    do {
-        pizza = prompt ("What size pizza do you want? (S, M, L, XL) ".green).toUpperCase();
-        switch (pizza) {
-            case  "S":
-                let pizzaPrice = 5;
-                getCostOfSize;
-                break;
-            case "M":
-                let pizzaPrice = 6;
-                getCostOfSize;
-                break;
-            case "L":
-                let pizzaPrice = 7;
-                getCostOfSize;
-                break;
-            case "XL":
-                let pizzaPrice = 8;
-                getCostOfSize;
-                break;
-            default:
-                console.log("Invalid entry please try again.".red);
+    pizza = prompt ("What size pizza do you want (S, M, L, or XL?) ").toUpperCase();
+    switch (pizza) {
+        case "S":
+            getCostOfSize (5);
+            break;
+        case "M":
+            getCostOfSize (6);
+            break;
+        case "L":
+            getCostOfSize (7);
+            break;
+        case "XL":
+            getCostOfSize (8);
+            break;
+        default:
+            console.log("Invalid entry please try again. (HINT: only enter S, M, L or XL.) ")
+    };
+    if (pizza === 'S' || pizza === 'M'|| pizza === 'XL' || pizza === 'XL'){
+        pizza = 1;
         };
-        if(pizza === 'S' || pizza === 'M'|| pizza === 'XL' || pizza === 'XL'){
-            pizza = 1;
-            }
-    }while(pizza !== 1);
+} while (pizza !== 1);
+
+function getCostOfCheese (cheese){
+    total += cheese;
+    console.log (`Your current running total is ${total}.00`) 
+};
+
+    let extraCheese = prompt ("Do you want extra cheese for $1 more? (Y/N) ").toUpperCase();
+    switch (extraCheese) {
+        case "Y":
+            getCostOfCheese (1);
+            break;
+        case "N":
+            getCostOfCheese (0);
+            break;
+        default:
+            console.log ("Invalid entry please try again. (HINT: only enter Y or N. ");
+    };
+
     
-//     let extraCheese = prompt ("Do you want extra cheese? (Y/N) ".yellow).toUpperCase();
-
-//     // terinary operator option
-//     total += extraCheese === "Y" ? 1 : 0;
-
-//     let extraToppings = null;
-//     do{
-//         extraToppings = prompt ("Do you want any other toppings? (Y/N) ".zebra).toUpperCase();
-//         if (extraToppings === "Y") {
-//             let toppings = prompt ("Please select: mushroom (M), onion (O), green pepper (G), pepperoni (P), sausage (S), or bacon (B)? ".grey.bgWhite).toUpperCase();
-            
-//             switch (toppings) {
-//             case  "M":
-//                 total += 2;
-//                 break;
-//             case "O":
-//                 total += 2;
-//                 break;
-//             case "G":
-//                 total += 2; 
-//                 break;   
-//             case "P":
-//                 total += 3;
-//                 break;
-//             case "S":
-//                 total += 3;
-//                 break;
-//             case "B":
-//                 total += 5;
-//                 break;
-//             };
-//         }; 
-//     }while (extraToppings === "Y");
-    
-//     another = prompt ("Would you like another pizza? (Y/N) ".grey.bgWhite).toUpperCase();
-// } while (another === "Y");
-
-// console.log (`Your total cost is $${total}.00`.rainbow.bgWhite);
