@@ -45,14 +45,9 @@ var colors = require('colors');
 // }
 
 // switch statements
-
-let pizza = null; 
-let extraCheese = null; 
-let extraToppings = null;
-let another = null;
-let toppings = null;
 let total = 0;
-// const taxes = 0.06;
+let pizza = null;
+let another = null;
 
 do {
     do {
@@ -78,15 +73,16 @@ do {
             }
     }while(pizza !== 1);
     
-    extraCheese = prompt ("Do you want extra cheese? (Y/N) ".yellow).toUpperCase();
+    let extraCheese = prompt ("Do you want extra cheese? (Y/N) ".yellow).toUpperCase();
 
     // terinary operator option
     total += extraCheese === "Y" ? 1 : 0;
 
+    let extraToppings = null;
     do{
-        extraToppings = prompt ("Do you want any other toppings? (Y/N) ".america).toUpperCase();
+        extraToppings = prompt ("Do you want any other toppings? (Y/N) ".zebra).toUpperCase();
         if (extraToppings === "Y") {
-            toppings = prompt ("Please select: mushroom (M), onion (O), green pepper (G), pepperoni (P), sausage (S), or bacon (B)? ".grey.bgWhite).toUpperCase();
+            let toppings = prompt ("Please select: mushroom (M), onion (O), green pepper (G), pepperoni (P), sausage (S), or bacon (B)? ".grey.bgWhite).toUpperCase();
             
             switch (toppings) {
             case  "M":
