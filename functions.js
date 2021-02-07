@@ -67,63 +67,110 @@
 const prompt = require('prompt-sync')(); 
 var colors = require('colors'); 
 
-let total = 0;
+
+let total = 0
 let pizza = null;
+let stop = false;
 // // let another = null;
 
-// size of pizza function and prompt
-function getCostOfSize (size) {
-    total = size;
-    console.log (`Your running total so far is ${total}.00`.green);
-};
-
 do {
-    pizza = prompt ("What size pizza do you want (S, M, L, or XL?) ").toUpperCase();
-    switch (pizza) {
-        case "S":
-            getCostOfSize (5);
-            break;
-        case "M":
-            getCostOfSize (6);
-            break;
-        case "L":
-            getCostOfSize (7);
-            break;
-        case "XL":
-            getCostOfSize (8);
-            break;
-        default:
-            console.log("Invalid entry please try again. (HINT: only enter S, M, L or XL.) ".red)
+    // size of pizza function and prompt
+    function getCostOfSize (size) {
+        subtotal = size;
+        console.log (`*****Your current subtotal is ${subtotal}.00*****`.green);
     };
-    if (pizza === 'S' || pizza === 'M'|| pizza === 'XL' || pizza === 'XL'){
-        pizza = 1;
+
+    do {
+        pizza = prompt ('What size pizza do you want (S, M, L, or XL?) ' ).toUpperCase();
+        switch (pizza) {
+            case 'S':
+                getCostOfSize (5);
+                stop = true;
+                break;
+            case 'M':
+                getCostOfSize (6);
+                stop = true;
+                break;
+            case 'L':
+                getCostOfSize (7);
+                stop = true;
+                break;
+            case 'XL':
+                getCostOfSize (8);
+                stop = true; 
+                break;
+            default:
+                console.log('Invalid entry please try again. (HINT: only enter S, M, L or XL.) '.red);
         };
-} while (pizza !== 1);
+    } while (!stop);
 
-// extra cheese function and prompt
-function getCostOfCheese (cheese){
-    total += cheese;
-    console.log (`Your current running total is ${total}.00`.green) 
-};
-
-let extraCheese = null;    
-do {
-    extraCheese = prompt ("Do you want extra cheese for $1 more? (Y/N) ").toUpperCase();
-    switch (extraCheese) {
-        case "Y":
-            getCostOfCheese (1);
-            break;
-        case "N":
-            getCostOfCheese (0);
-            break;
-        default:
-            console.log ("Invalid entry please try again. (HINT: only enter Y or N.)".red);
+    // extra cheese function and prompt
+    function getCostOfCheese (cheese){
+        subtotal += cheese;
+        console.log (`*****Your current subtotal is ${subtotal}.00*****`.green); 
     };
-    if (extraCheese === 'Y' || extraCheese === 'N'){
-        extraCheese = 1;
+
+    let extraCheese = null;    
+    do {
+        extraCheese = prompt ('Do you want extra cheese for $1 more? (Y/N) ').toUpperCase();
+        switch (extraCheese) {
+            case 'Y':
+                getCostOfCheese (1);
+                stop = true;
+                break;
+            case 'N':
+                getCostOfCheese (0);
+                stop = true;
+                break;
+            default:
+                console.log ('Invalid entry please try again. (HINT: only enter Y or N.)'.red);
+                stop = false;
+        };
+    } while (!stop);
+
+    // extra toppings function and prompt
+    function getCostOfToppings (toppings) {
+        subtotal += toppings;
+        console.log (`*****Your current subtotal is ${subtotal}.00*****`.green);
     }
-} while (extraCheese !== 1);
 
-
-
+    let extraToppings = null;
+    do {
+        extraToppings = prompt ("Do you want any other toppings? (Y/N) ").toUpperCase();
+        if (extraToppings === 'Y') {
+            toppings = prompt ('Please select: Mushroom: $2 (M), Onion: $2 (O), Green Pepper: $2 (GP), Pepperoni: $3 (P), Sausage: $3 (S), or Bacon: $5 (B). ').toUpperCase();
+            switch (toppings) {
+                case 'M':
+                    getCostOfToppings (2);
+                    break;
+                case 'O':
+                    getCostOfToppings (2);
+                    break;
+                case 'GP':
+                    getCostOfToppings (2);
+                    break;
+                case 'P':
+                    getCostOfToppings (3);
+                    break;
+                case 'S':
+                    getCostOfToppings (3);
+                    break;
+                case 'B':
+                    getCostOfToppings (5);
+                    break;
+                default:
+                    console.log('Invalid entry please try again. Hint: use what is in the M, O, GP, P, S or B.'.red)
+            };
+        };
+    }while (extraToppings === 'Y');
     
+    console.log (`*****Your subtotal for this pizza is ${subtotal}.00*****`.green)
+    another = prompt ('Would you like another pizza? (Y/N) ').toUpperCase();
+} while (another === 'Y');
+
+// function taxes(subtotal, stateTaxes=0.06) {
+//     return total = subtotal + (subtotal * stateTaxes);
+// }
+
+// taxes (subtotal, 0.06);
+// console.log (`*****Your total for this pizza is ${total.toFixed(2)}*****`.green);
